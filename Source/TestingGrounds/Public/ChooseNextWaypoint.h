@@ -7,7 +7,7 @@
 #include "ChooseNextWaypoint.generated.h"
 
 /**
- * 
+ * Feeds the next waypoint in the Actor waypoint list to the patrol data Blackboard.
  */
 UCLASS()
 class TESTINGGROUNDS_API UChooseNextWaypoint : public UBTTaskNode
@@ -21,4 +21,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Blackboard")
 	struct FBlackboardKeySelector IndexKey;
 	
+	UPROPERTY(EditAnywhere, Category = "Blackboard")
+	struct FBlackboardKeySelector WaypointKey;
 };
