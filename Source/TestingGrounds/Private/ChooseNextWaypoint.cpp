@@ -6,7 +6,10 @@
 /* For getting the Points from the Actor (the extended class):
  * #include "PatrollingGuard.h"	// TODO Remove coupling
  */
-#include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+ /* Changing to the Character in the Animation Starter Pack
+  * #include "TP_ThirdPerson/TP_ThirdPersonCharacter.h"
+  */
+#include "GameFramework/Character.h"
 #include "Engine/TargetPoint.h"
 #include "PatrollingComponent.h"
 
@@ -14,14 +17,18 @@ EBTNodeResult::Type UChooseNextWaypoint::ExecuteTask(UBehaviorTreeComponent& Own
 	// TODO try using references(&) instead of pointers(*)
 
 	// Get Patrol Points
-	ATP_ThirdPersonCharacter* Patrol{ Cast<ATP_ThirdPersonCharacter>(OwnerComp.GetAIOwner()->GetPawn()) };
-
+	/* Changing to the Character in the Animation Starter Pack
+	 * ATP_ThirdPersonCharacter* Patrol{ Cast<ATP_ThirdPersonCharacter>(OwnerComp.GetAIOwner()->GetPawn()) };
+	 */
+	ACharacter* Patrol{ Cast<ACharacter>(OwnerComp.GetAIOwner()->GetPawn()) };
+	if (!ensure(Patrol)) {
+		return EBTNodeResult::Failed;
+	}
 	/* For getting the Points from the Actor (the extended class):
 	 *
 	 * TArray<ATargetPoint*> PatrolPoints{ Patrol->PatrolRouteCPP };	// TODO Protect against empty patrol routes
 	 */
 	UPatrollingComponent* PatrollingComponent{ Patrol->FindComponentByClass<UPatrollingComponent>() };
-
 	if (!ensure(PatrollingComponent)) {
 		return EBTNodeResult::Failed;
 	}
