@@ -116,6 +116,12 @@ void AFirstPersonCharacter::BeginPlay()
 //		VR_Gun->SetHiddenInGame(true, true);
 //		Mesh1P->SetHiddenInGame(false, true);
 //	}
+//253 adds:
+	Gun->AnimInstance = Mesh1P->GetAnimInstance();
+	if (EnableTouchscreenMovement(InputComponent) == false) {
+		InputComponent->BindAction("Fire", IE_Pressed, Gun, &AGun::OnFire);
+	}
+//
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -130,10 +136,12 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	//InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &AFirstPersonCharacter::TouchStarted);
-	if (EnableTouchscreenMovement(PlayerInputComponent) == false)
-	{
-		//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFirstPersonCharacter::OnFire);
-	}
+//253
+//	if (EnableTouchscreenMovement(PlayerInputComponent) == false)
+//	{
+////251
+////		PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AFirstPersonCharacter::OnFire);
+//	}
 
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AFirstPersonCharacter::OnResetVR);
 
@@ -222,7 +230,8 @@ void AFirstPersonCharacter::EndTouch(const ETouchIndex::Type FingerIndex, const 
 	}
 	if ((FingerIndex == TouchItem.FingerIndex) && (TouchItem.bMoved == false))
 	{
-		//OnFire();
+//251
+//		OnFire();
 	}
 	TouchItem.bIsPressed = false;
 }
