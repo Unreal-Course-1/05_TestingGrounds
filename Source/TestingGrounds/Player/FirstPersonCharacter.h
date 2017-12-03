@@ -76,10 +76,18 @@ public:
 //	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 //	class UAnimMontage* FireAnimation;
 
+//252 added:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	TSubclassOf<class AGun> GunBlueprint;
+//
 	/** Whether to use motion controller location for aiming. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	uint32 bUsingMotionControllers : 1;
 
+//252 added:
+private:
+	AGun* Gun;
+//
 protected:
 //251	
 //	/** Fires a projectile. */
