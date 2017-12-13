@@ -117,7 +117,7 @@ void AFirstPersonCharacter::BeginPlay()
 //		Mesh1P->SetHiddenInGame(false, true);
 //	}
 //253 adds:
-	Gun->AnimInstance = Mesh1P->GetAnimInstance();
+	Gun->AnimInstance1P = Mesh1P->GetAnimInstance();
 	if (EnableTouchscreenMovement(InputComponent) == false) {
 		InputComponent->BindAction("Fire", IE_Pressed, Gun, &AGun::OnFire);
 	}
